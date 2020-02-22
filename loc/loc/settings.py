@@ -70,6 +70,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'loc.wsgi.application'
 
+AUTH_USER_MODEL = 'fir.User'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
