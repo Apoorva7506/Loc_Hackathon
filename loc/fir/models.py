@@ -22,21 +22,33 @@ class missing_obj(models.Model):
     location=models.CharField(max_length=100)
 
 
+    def __str__(self): 
+         return self.object_name
+
+
 class murder(models.Model):
 
     complainant=models.ForeignKey(User,on_delete=models.CASCADE)
     reported_on=models.DateTimeField(auto_now_add=True)
-    dead_name=models.CharField(max_length=100)
+    dead_name=models.CharField(max_length=100,blank=True,null=True)
     suspects=models.TextField()
     location=models.CharField(max_length=100)
 
+    def __str__(self): 
+         return self.dead_name
+
+
+
 class miss_person(models.Model):
-    complainant=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    complainant=models.ForeignKey(User, on_delete=models.CASCADE,blank=True,null=True)
     missdate=models.DateField()
     reported_on=models.DateTimeField(auto_now_add=True)
     miss_name=models.CharField(max_length=100)
     pdescription=models.TextField()
     last_seen_loc=models.TextField()
+
+    def __str__(self): 
+         return self.miss_name
 
 class Assault(models.Model):
     complainant=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
@@ -45,6 +57,9 @@ class Assault(models.Model):
     s_description=models.TextField()
     suspects=models.TextField()
     date_time=models.DateTimeField()
+
+    def __str__(self): 
+         return self.victim_name
     
 
 

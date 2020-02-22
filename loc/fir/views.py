@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import User
+from .models import User,missing_obj,murder,miss_person
 from django.contrib import auth
 
 
@@ -32,6 +32,73 @@ def login(request):
 
 
 
+def fir_mo(request):
+    if request.method =='POST':
+        complainant=request.user
+        objct_name = request.POST['obj_name']
+        miss_date = request.POST['missing_date']
+        location = request.POST['location']
+        obj_descr = request.POST['obj_descr']
+
+        
+        cuser=missing_obj(complainant=complainant,missdate=miss_date,objectdescription=obj_descr,object_name=obj_name,location=location)
+        cuser.save()
+        return HttpResponse('MO')
+
+
+    else:
+    
+        return render(request,"FIR1.html")
+       
+
+
+
+
+
+
+
+def fir_dp(request):
+    if request.method =='POST':
+        complainant=request.user
+        dead_name = request.POST['dp_name']
+        suspects = request.POST['suspects']
+        location = request.POST['location']
+        
+
+        
+        tuser=murder(complainant=complainant,dead_name=dead_name,suspects=suspects,location=location)
+        tuser.save()
+        return HttpResponse('DP')
+
+
+    else:
+    
+        return render(request,"FIR2.html")
+
+
+
+
+def fir_mp(request):
+    if request.method =='POST':
+        complainant=request.user
+        p_name = request.POST['p_name']
+        miss_date = request.POST['missing_date1']
+        p_descr = request.POST['p_descr']
+        location = request.POST['location']
+        
+
+        
+        tuser=miss_person(complainant=complainant,pdescription=p_descr,miss_name=p_name,last_seen_loc=location,missdate=miss_date)
+        tuser.save()
+        return HttpResponse('MP')
+
+
+    else:
+    
+        return render(request,"FIR3.html")
+
+ 
+    
 def register(request):
     if request.method =='POST':
         first_name = request.POST['first_name']
@@ -57,16 +124,6 @@ def register(request):
                 user.save()
                 return render(request,'index.html')
 
-
     else:
     
         return render(request,'signup.html')
-       
-
- 
-    
-        
-
-
-def fir_mo(request):
-    return HttpResponse("MO")
