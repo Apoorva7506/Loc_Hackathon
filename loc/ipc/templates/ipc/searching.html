@@ -1,8 +1,8 @@
 <html>
-    <body>
+    <body style="background-color:cyan">
         <form action="ipc" method="post" class="post-form">{% csrf_token %}
-            <input type="text" name="word">
-            <input type="submit" value="add">
+            <input type="text" name="word" size="175%">
+            <input type="submit" value="Search" >
         </form>
         {% if found %}
             {% for key,value in d.items %}

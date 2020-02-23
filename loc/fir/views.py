@@ -6,7 +6,7 @@ from django.contrib import auth
 
 
 def index(request):
-    return HttpResponse("INDEX")
+    return render(request,'fir/home1.html')
 
 
 
@@ -21,13 +21,13 @@ def login(request):
 
         if user is not None:
             auth.login(request,user)
-            return redirect('index')
+            return redirect("index")
         else:
-            return HttpResponse("Galat")
+            return HttpResponse("Wrong Credentials Please try again")
    
    
    
-    return render(request,'login.html')
+    return render(request,'fir/login.html')
 
 
 
@@ -51,7 +51,13 @@ def fir_mo(request):
         return render(request,"FIR1.html")
        
 
+def logout(request):
+    
+    if request.method=='POST':
+        auth.logout(request)
 
+
+        return redirect('index')
 
 
 
@@ -146,8 +152,8 @@ def register(request):
                 user=User.objects.create_user(username=username,first_name=first_name,last_name=last_name,
                 email=email,password=password,contact=contact,Date_of_Birth=dob)
                 user.save()
-                return render(request,'index.html')
+                return redirect('index')
 
     else:
     
-        return render(request,'signup.html')
+        return render(request,'fir/login.html')
