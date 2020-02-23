@@ -1,0 +1,39 @@
+<html >
+	<head>
+		<style>
+			a:hover{
+				color:red;
+			}
+			.blinking{
+    				animation:blinkingText 1.2s infinite;
+			}
+			@keyframes blinkingText{
+    			0%{     color: #000;    }
+    			49%{    color: #000; }
+    			60%{    color: transparent; }
+    			99%{    color:transparent;  }
+    			100%{   color: #000;    }
+			}
+			a{
+				color:black;
+			}
+		
+		</style>
+	</head>
+<body >
+	<div style="background-color: #ccedd2;">
+	<div style="text-align: center;">
+	<h1 style="font-family:verdana;"><span class="blinking">BREAKING NEWS</span></h1>
+	</div>
+	{% for news in news %}
+		<div class="news" style="border-style: outset; ">
+			<img src="{{news.img}}" style="border-radius: 8px;border: 1px solid black;padding: 5px;
+			width: 150px;">
+			<h2 style="font: sans-serif; font-size:300% ; ;text-align: centre"><b><a  href="{% url 'news_detail' nk=news.pk %}">{{news.title}}</a>/</b></h2>
+			<p style="font-family:courier;font-size: 150% ; color:purple">{{news.description}}</p>
+			<hr>
+		</div>
+	{% endfor %}
+	</div>
+</body>
+</html>

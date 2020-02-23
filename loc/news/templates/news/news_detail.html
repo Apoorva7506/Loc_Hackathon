@@ -1,0 +1,23 @@
+<html>
+<body>
+
+
+        <div class="news" style="border-style: outset;">
+            <img src='{{news.img}}'>
+			<h2 style="font: sans-serif; font-size:300% ;color: blue ;text-align: centre"><b>{{news.title}}</a>/</b></h2>
+			<p style="font-family:courier;font-size: 150% ; color:black ">{{news.description}}</p>
+			<hr>
+		</div>
+    
+    <h3>Comments Section</h3>
+    <form action="{% url 'add_comment' nk=news.pk %}" method="post" class="post-form">{% csrf_token %}
+        <input type="text" name="comment">
+        <input type="submit" value="add">
+    </form>
+    {% for com in com %}
+        <p>{{com.comment}}</p>
+        <p>{{com.user}}</p>
+        <p>{{com.created_date}}</p>
+    {% endfor %}
+</body>
+</html>

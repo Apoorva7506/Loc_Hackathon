@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <form action="ipc" method="post" class="post-form">{% csrf_token %}
+            <input type="text" name="word">
+            <input type="submit" value="add">
+        </form>
+        {% if found %}
+            {% for key,value in d.items %}
+                <div style="border-style: outset;">
+                <p style="font-size:200%;"><b><u>Section {{key}}:</u></b></p>
+                <p style="font-family:courier;font-size: 150% ; color:black">{{value}}</p>
+                <hr>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </body>
+</html>
