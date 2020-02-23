@@ -7,7 +7,8 @@ urlpatterns=[
     path('register',views.register,name='register'),
     path('firmo',views.fir_mo,name='firmo'),
     path('firdp',views.fir_dp,name='firdp'),
-    path('firmp',views.fir_mp,name='firmp')
+    path('firmp',views.fir_mp,name='firmp'),
+    path('firass',views.fir_ass,name='firass')
 
     
 ]

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import User,missing_obj,murder,miss_person
+from .models import User,missing_obj,murder,miss_person,Assault
 from django.contrib import auth
 
 
@@ -96,6 +96,30 @@ def fir_mp(request):
     else:
     
         return render(request,"FIR3.html")
+
+
+
+
+def fir_ass(request):
+    if request.method =='POST':
+        complainant=request.user
+        victim_name = request.POST['victim_name']
+        suspects = request.POST['suspects']
+
+        date_time = request.POST['date_time']
+        s_description = request.POST['s_description']
+        location = request.POST['location']
+        
+
+        
+        tuser=Assault(complainant=complainant,victim_name=victim_name, suspects= suspects,date_time=date_time, s_description= s_description, location= location)
+        tuser.save()
+        return HttpResponse('ASS')
+
+
+    else:
+    
+        return render(request,"FIR4.html")
 
  
     

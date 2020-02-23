@@ -57,6 +57,7 @@ class Assault(models.Model):
     s_description=models.TextField()
     suspects=models.TextField()
     date_time=models.DateTimeField()
+    location=models.CharField(max_length=100)
 
     def __str__(self): 
          return self.victim_name
