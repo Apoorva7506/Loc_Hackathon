@@ -8,12 +8,12 @@ from django.http import HttpResponse
 from datetime import datetime
 from django.conf import settings
 
-def news_make(request):
+'''def news_make(request):
 
 	url = 'https://www.indiatoday.in/crime'
 
-	titlelist=[]
-	desclist=[]
+	#titlelist=[]
+	#desclist=[]
 	piclist=[]
 	mainlist=[]
 
@@ -29,16 +29,16 @@ def news_make(request):
 		desclist.append(desc.text)
 		piclist.append(pic)
 		mainlist.append(main)
-		#if pic['src']!=None:
-		#	news=News.objects.create(title=main.text,description=desc.text,img=pic['src'])
-		#else:
-		#	news=News.objetcs.create(title=main.text,description=desc.text)
+		if pic['src']!=None:
+			news=News.objects.create(title=main.text,description=desc.text,img=pic['src'])
+		else:
+			news=News.objetcs.create(title=main.text,description=desc.text)
 	for i in range(len(piclist)-2):
 		news=News.objects.create(title=titlelist[i],description=desclist[i],img=piclist[i]['src'])
 	for i in range(len(piclist)-2+1,len(piclist)):
 		news=News.objects.create(title=titlelist[i],description=desclist[i])
 	
-	return HttpResponse("It Works")
+	return HttpResponse("It Works")'''
 
 def news_list(request):
 	news=News.objects.all()
@@ -47,7 +47,7 @@ def news_list(request):
 
 def news_detail(request,nk):
 	news=get_object_or_404(News, pk=nk)	
-	com=Comment.objects.filter(news=news)
+	com=Comment.objects.filter(news=news).order_by('-created_date')
 	return render(request,'news/news_detail.html',{'news':news,'com':com})
 
 def add_comment(request,nk):
